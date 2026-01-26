@@ -1,4 +1,4 @@
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' });
   }
@@ -49,14 +49,9 @@ Máximo 180 palabras. Sé cinematográfico.` },
     let reply = data.choices?.[0]?.message?.content?.trim() || "La IA no generó respuesta.";
     reply = reply.replace(/\[.*?\]/g, "").trim();
 
-    // Evitar bucles: si repite la pregunta, forzamos avance
-    if (reply.includes("¿Cuál es el nombre") && reply.length < 100) {
-      reply = "Perfecto. Ahora te presento tres posibles identidades para tu personaje. Elige la que más te guste o propón tu propio sobrenombre.";
-    }
-
     return res.status(200).json({ reply });
   } catch (error) {
     console.error("Error en el backend:", error.message);
     return res.status(500).json({ error: "Error interno del servidor" });
   }
-};
+}
