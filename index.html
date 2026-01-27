@@ -126,6 +126,27 @@
             color: #ff4d4d;
         }
         
+        /* Botón Volver */
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 40px auto 20px;
+            padding: 15px 30px;
+            background-color: #871d17;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .back-button:hover {
+            background-color: #a0251f;
+            transform: scale(1.05);
+        }
+        
         @media (max-width: 900px) {
             .product-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -215,6 +236,9 @@
             <button class="price-btn">$21</button>
         </div>
     </main>
+
+    <!-- Botón Volver -->
+    <a href="https://fco-guillermo-github-io.vercel.app/" class="back-button">← Volver</a>
 
     <!-- Lightbox (se muestra al hacer clic en una imagen) -->
     <div id="lightbox" class="lightbox">
