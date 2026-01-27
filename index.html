@@ -45,12 +45,19 @@
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.03);
         }
         
         .product-img {
             width: 100%;
             height: 220px;
             object-fit: cover;
+            cursor: pointer;
         }
         
         .product-desc {
@@ -81,6 +88,43 @@
             background: #a0251f;
             transform: scale(1.02);
             transition: all 0.2s;
+        }
+        
+        /* Lightbox CSS */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close:hover {
+            transform: scale(1.2);
+            color: #ff4d4d;
         }
         
         @media (max-width: 900px) {
@@ -117,60 +161,84 @@
 
     <main class="product-grid">
         <!-- Producto 1 -->
-        <div class="product-card">
+        <div class="product-card" onclick="openLightbox('imagenes/foto1.jpeg')">
             <img class="product-img" src="imagenes/foto1.jpeg" alt="Figura 1">
             <p class="product-desc">Figura de superhéroe clásico</p>
             <button class="price-btn">$15</button>
         </div>
         
         <!-- Producto 2 -->
-        <div class="product-card">
+        <div class="product-card" onclick="openLightbox('imagenes/foto2.jpeg')">
             <img class="product-img" src="imagenes/foto2.jpeg" alt="Figura 2">
             <p class="product-desc">Villano con capa roja</p>
             <button class="price-btn">$18</button>
         </div>
         
         <!-- Producto 3 -->
-        <div class="product-card">
+        <div class="product-card" onclick="openLightbox('imagenes/foto3.jpeg')">
             <img class="product-img" src="imagenes/foto3.jpeg" alt="Figura 3">
             <p class="product-desc">Robot futurista plateado</p>
             <button class="price-btn">$22</button>
         </div>
         
         <!-- Producto 4 -->
-        <div class="product-card">
+        <div class="product-card" onclick="openLightbox('imagenes/foto4.jpeg')">
             <img class="product-img" src="imagenes/foto4.jpeg" alt="Figura 4">
             <p class="product-desc">Caballero medieval con espada</p>
             <button class="price-btn">$20</button>
         </div>
         
         <!-- Producto 5 -->
-        <div class="product-card">
+        <div class="product-card" onclick="openLightbox('imagenes/foto5.jpeg')">
             <img class="product-img" src="imagenes/foto5.jpeg" alt="Figura 5">
             <p class="product-desc">Dragón verde con alas</p>
             <button class="price-btn">$25</button>
         </div>
         
         <!-- Producto 6 -->
-        <div class="product-card">
+        <div class="product-card" onclick="openLightbox('imagenes/foto6.jpeg')">
             <img class="product-img" src="imagenes/foto6.jpeg" alt="Figura 6">
             <p class="product-desc">Princesa con vestido azul</p>
             <button class="price-btn">$16</button>
         </div>
         
         <!-- Producto 7 -->
-        <div class="product-card">
+        <div class="product-card" onclick="openLightbox('imagenes/foto7.jpeg')">
             <img class="product-img" src="imagenes/foto7.jpeg" alt="Figura 7">
             <p class="product-desc">Pirata con sombrero y espada</p>
             <button class="price-btn">$19</button>
         </div>
         
         <!-- Producto 8 -->
-        <div class="product-card">
+        <div class="product-card" onclick="openLightbox('imagenes/foto8.jpeg')">
             <img class="product-img" src="imagenes/foto8.jpeg" alt="Figura 8">
             <p class="product-desc">Astronauta con casco dorado</p>
             <button class="price-btn">$21</button>
         </div>
     </main>
+
+    <!-- Lightbox (se muestra al hacer clic en una imagen) -->
+    <div id="lightbox" class="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="Imagen completa">
+    </div>
+
+    <script>
+        function openLightbox(imgSrc) {
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Cerrar lightbox al hacer clic en el fondo
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
