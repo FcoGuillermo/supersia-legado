@@ -1,1 +1,0 @@
-# supersia-legado
